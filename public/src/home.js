@@ -5,13 +5,12 @@ function getTotalBooksCount(books) {return books.length}
 function getTotalAccountsCount(accounts) {return accounts.length}
 
 function getBooksBorrowedCount(books) {
-  let total = 0
-  for (let book in books) {
-    for (let borrow in books[book].borrows) {
-      if (books[book].borrows[borrow].returned == false) {total += 1}
+  return books.reduce((acc, book) => {
+    for (let borrow in book.borrows) {
+      if (book.borrows[borrow].returned == false) {acc += 1}
     }
-  }
-  return total
+    return acc
+  }, 0)
 }
 
 function getMostCommonGenres(books) {
